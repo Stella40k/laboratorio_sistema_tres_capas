@@ -5,10 +5,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/");
+//app.use("/");
 
 app.get("/", (req, res) => {
   res.send("Backend funcionando");
 });
 
-module.exports = app;
+export default app;
