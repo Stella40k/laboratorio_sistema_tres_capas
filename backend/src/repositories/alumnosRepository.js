@@ -1,7 +1,7 @@
 import connect from "../config/config.db.js";
 
 //todos
-export const alumnos = async () => {
+export const alumnosRepo = async () => {
   const sql = `
     SELECT *
     FROM alumnos
@@ -12,7 +12,7 @@ export const alumnos = async () => {
 };
 
 //busqueda por DNI
-export const alumno = async (dni) => {
+export const alumnoRepo = async (dni) => {
   const sql = `
     SELECT *
     FROM alumnos
@@ -23,7 +23,7 @@ export const alumno = async (dni) => {
 };
 
 //crear alumno
-export const crearAlumno = async (apellidos, nombres, dni) => {
+export const crearAlumnoRepo = async (apellidos, nombres, dni) => {
   const sql = `
     INSERT INTO alumnos
     (apellidos, nombres, dni)
@@ -31,12 +31,12 @@ export const crearAlumno = async (apellidos, nombres, dni) => {
     `;
   const [resultados] = await connect
     .promise()
-    .qery(sql, [apellidos, nombres, dni]);
+    .query(sql, [apellidos, nombres, dni]);
   return resultados;
 };
 
 //actualizar
-export const alumnoActualizado = async (id, apellidos, nombres, dni) => {
+export const alumnoActualizadoRepo = async (id, apellidos, nombres, dni) => {
   const sql = `
     UPDATE alumnos
     SET
@@ -52,10 +52,10 @@ export const alumnoActualizado = async (id, apellidos, nombres, dni) => {
 };
 
 //eliminar
-export const eliminarAlumno = async (id) => {
+export const eliminarAlumnoRepo = async (id) => {
   const sql = `
-    DELET FROM alumnos
-    WHERE id
+    DELETE FROM alumnos
+    WHERE id = ?
     `;
   const [resultados] = await connect.promise().query(sql, [id]);
   return resultados;
