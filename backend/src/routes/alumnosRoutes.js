@@ -1,4 +1,11 @@
 import { Router } from "express";
+import {
+  alumnosRepo,
+  alumnoRepo,
+  crearAlumnoRepo,
+  alumnoActualizadoRepo,
+  eliminarAlumnoRepo,
+} from "../repositories/alumnosRepository.js";
 
 const routes = Router();
 
@@ -16,4 +23,8 @@ routes.get("/test", (req, res) => {
   }
 });
 
+routes.get("/consultarAlumnos", alumnosRepo);
+routes.post("/crearAlumno", crearAlumnoRepo);
+routes.put("/actualizarAlumno/:id", alumnoActualizadoRepo);
+routes.delete("/eliminarAlumno/:id", eliminarAlumnoRepo);
 export default routes;
