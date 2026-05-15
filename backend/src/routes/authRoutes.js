@@ -3,7 +3,10 @@ import {
   registroController,
   loginController,
 } from "../controller/authController.js";
-
+import {
+  validarRegistro,
+  validarLogin,
+} from "../validations/authValidation.js";
 const authRoutes = Router();
 
 //prueba de rutas
@@ -20,7 +23,7 @@ authRoutes.get("/test", (req, res) => {
   }
 });
 
-authRoutes.post("/register", registroController);
-authRoutes.post("/loguin", loginController);
+authRoutes.post("/register", validarRegistro, registroController);
+authRoutes.post("/login", validarLogin, loginController);
 
 export default authRoutes;

@@ -1,11 +1,11 @@
 import { Router } from "express";
 import {
-  alumnosRepo,
-  alumnoRepo,
-  crearAlumnoRepo,
-  alumnoActualizadoRepo,
-  eliminarAlumnoRepo,
-} from "../repositories/alumnosRepository.js";
+  todosLosAlumnosController,
+  crearAlumnoController,
+  alumnoActualizadoController,
+  eliminarAlumnoController,
+} from "../controller/alumnosController.js";
+import { validarAlumno } from "../validations/alumnosValidation.js";
 
 const routes = Router();
 
@@ -23,8 +23,8 @@ routes.get("/test", (req, res) => {
   }
 });
 
-routes.get("/consultarAlumnos", alumnosRepo);
-routes.post("/crearAlumno", crearAlumnoRepo);
-routes.put("/actualizarAlumno/:id", alumnoActualizadoRepo);
-routes.delete("/eliminarAlumno/:id", eliminarAlumnoRepo);
+routes.get("/consultarAlumnos", todosLosAlumnosController);
+routes.post("/crearAlumno", validarAlumno, crearAlumnoController);
+routes.put("/actualizarAlumno/:id", validarAlumno, alumnoActualizadoController);
+routes.delete("/eliminarAlumno/:id", eliminarAlumnoController);
 export default routes;
